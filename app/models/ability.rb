@@ -4,6 +4,12 @@ class Ability
   def initialize(user)
     can :read, User
     can :manage, User, :id => user.id
+    cannot :destroy, Game
+
+    if user.admin?
+      can :destroy, Game
+    end
+
 
     # Define abilities for the passed in user here. For example:
     #

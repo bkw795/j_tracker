@@ -78,9 +78,9 @@ module ApplicationHelper
   def value_by_cell_id( cell_id )
     case cell_id
     when 1..30
-      return (( cell_id / 6 ) + 1) * 200
+      return (( (cell_id-1) / 6 ) + 1) * 200
     when 31..60
-      return (( cell_id / 6 ) - 4) * 400
+      return (( (cell_id-1) / 6 ) - 4) * 400
     else
       return -1
     end

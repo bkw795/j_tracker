@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :check_authentication, :only => [:new, :create, :show, :index]
+  skip_before_filter :current_user, :only => [:new, :create]
   load_and_authorize_resource :except => [:new, :create, :show, :index]
 
   def new

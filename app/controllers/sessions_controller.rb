@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.authenticate( params[:username], params[:password] )
     unless user.nil?
       session[:user_id] = user.id
-      redirect_to user
+      redirect_to games_path
     else
       flash[:alert] = "There was an error logging you in. Try again."
       redirect_to new_session_url

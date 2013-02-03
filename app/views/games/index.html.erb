@@ -2,6 +2,9 @@
 
 <% @games.each do |g| %>
   <%= link_to "Game #{g.show_id}", g %>
+  <% if @current_user.admin? %>
+    | <%= link_to "X", g, :method => :delete, :confirm => "Are you sure?", :title => "Delete Game #{g.show_id}" %>
+  <% end %><br />
 <% end %>
 
 <br/><br/>

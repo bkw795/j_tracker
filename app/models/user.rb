@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     save( :validate => false )
   end
 
+  def admin?
+    admin
+  end
+
   def responded?( clue_id )
     responses.find_by_clue_id( clue_id )
   end

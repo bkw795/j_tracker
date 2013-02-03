@@ -1,0 +1,49 @@
+<%= javascript_include_tag "clues" %>
+
+<h1><%= @clue.category %></h1>
+<h3><%= @clue.clue_text %></h3>
+<div class="response_choices">
+  <span class="respond_to_clue" id="respond_clue_<%= @clue.id %>">Respond</span> |
+  <span class="pass_on_clue" id="pass_clue_<%= @clue.id %>">Pass</span>
+</div>
+
+<div class="response_menu" style="display: none;">
+  <br /><br /><br />
+  <%= @clue.correct_response %><br /><br />
+  <%= form_for @current_user.responses.build( :clue_id => @clue.id ) do |f|%>
+    <div><%= f.hidden_field :clue_id %></div>
+    <div><%= f.hidden_field :responded, :value => true %></div>
+    <div><%= f.hidden_field :result, :value => true %></div>
+    <div class="actions"><%= f.submit "Got It Right" %></div>
+  <% end %>
+
+  <%= form_for @current_user.responses.build( :clue_id => @clue.id, :responded => true, :result => false ) do |f|%>
+    <div><%= f.hidden_field :clue_id %></div>
+    <div><%= f.hidden_field :responded, :value => true %></div>
+    <div><%= f.hidden_field :result, :value => false %></div>
+    <div class="actions"><%= f.submit "Got It Wrong" %></div>
+  <% end %>
+  <br />
+  Help us out by voting on categorization...
+</div>
+
+<div class="pass_menu" style="display:none;">
+  <br /><br /><br />
+  <%= @clue.correct_response %><br /><br />
+  <%= form_for @current_user.responses.build( :clue_id => @clue.id, :responded => true, :result => false ) do |f|%>
+    <div><%= f.hidden_field :clue_id %></div>
+    <div><%= f.hidden_field :responded, :value => false %></div>
+    <div><%= f.hidden_field :result, :value => true %></div>
+    <div class="actions"><%= f.submit "Would have Gotten It right" %></div>
+  <% end %> 
+  <%= form_for @current_user.responses.build( :clue_id => @clue.id, :responded => true, :result => false ) do |f|%>
+    <div><%= f.hidden_field :clue_id %></div>
+    <div><%= f.hidden_field :responded, :value => false %></div>
+    <div><%= f.hidden_field :result, :value => false %></div>
+    <div class="actions"><%= f.submit "Would Have Gotten It Wrong" %></div>
+  <% end %>
+  <br />
+  Help us out by voting on categorization...
+</div>
+<br /><br />
+<%= link_to "Back to game", @clue.game %>

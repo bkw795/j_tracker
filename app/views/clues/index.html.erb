@@ -1,0 +1,7 @@
+<h1>Clues</h1>
+
+<% @clues.each do |c| %>
+  <%= c.cell_id %>: <b><%= c.category %></b>
+  <%= c.clue_text %><br />
+  <%= c.correct_response %><br/><br />
+<% end %>

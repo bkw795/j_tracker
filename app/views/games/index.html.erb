@@ -1,0 +1,9 @@
+<h1>Available Games</h1>
+
+<% @games.each do |g| %>
+  <%= link_to "Game #{g.show_id}", g %>
+<% end %>
+
+<br/><br/>
+
+<%= link_to "Add a game", new_game_path %>

@@ -1,0 +1,64 @@
+<h1>Game <%= @game.show_id %></h1>
+
+<br /><br />
+
+  Answered = <%= @stats[:total_correct] %>/<%= @stats[:total_answered] %> (<%= @stats[:total_correct].to_f / @stats[:total_answered].to_f %>)
+  <br />
+  Clammed = <%= @stats[:clams_correct] %>/<%= @stats[:total_clams] %>
+  <br />
+  Total = <%= @stats[:total_correct] %>/<%= @game.clues.count - 1 %> (<%= @stats[:total_correct].to_f / (@game.clues.count - 1).to_f %>)
+
+<br /><br />
+
+<table>
+  <tr>
+    <th><%= @categories[0] %></th>
+    <th><%= @categories[1] %></th>
+    <th><%= @categories[2] %></th>
+    <th><%= @categories[3] %></th>
+    <th><%= @categories[4] %></th>
+    <th><%= @categories[5] %></th>
+  </tr>
+  <% count = 0 %>
+  <% @game.clues[0..29].each do |c| %>
+    <% if count % 6 == 0 %>
+      <tr><td><%= clue_link( c ).html_safe %></td>
+    <% elsif count % 6 == 5 %>
+      <td><%= clue_link( c ).html_safe %></td></tr>
+    <% else %>
+      <td><%= clue_link( c ).html_safe %></td>
+    <% end %>
+    <% count += 1 %>
+  <% end %>
+</table>
+
+<br /><br /><br />
+
+<table>
+  <tr>
+    <th><%= @categories[6] %></th>
+    <th><%= @categories[7] %></th>
+    <th><%= @categories[8] %></th>
+    <th><%= @categories[9] %></th>
+    <th><%= @categories[10] %></th>
+    <th><%= @categories[11] %></th>
+  </tr>
+  <% count = 0 %>
+  <% @game.clues[30..59].each do |c| %>
+    <% if count % 6 == 0 %>
+      <tr><td><%= clue_link( c ).html_safe %></td>
+    <% elsif count % 6 == 5 %>
+      <td><%= clue_link( c ).html_safe %></td></tr>
+    <% else %>
+      <td><%= clue_link( c ).html_safe %></td>
+    <% end %>
+    <% count += 1 %>
+  <% end %>
+</table>
+
+<br /><br /><br />
+
+<h3>Final Jeopardy</h3>
+Category: <b><%= @categories[12] %></b><br />
+<%= @game.clues[60].clue_text %>
+
